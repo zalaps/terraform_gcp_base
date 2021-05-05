@@ -1,0 +1,32 @@
+
+alertmanager:
+  enabled: false
+
+grafana:
+  enabled: false
+
+prometheus:
+  service:
+    annotations: 
+      cloud.google.com/load-balancer-type: "Internal"
+    type: LoadBalancer
+
+# resources configuration
+
+prometheus-node-exporter:
+  resources:
+    requests:
+      cpu:    50m
+      memory: 30Mi
+
+prometheusOperator:
+  resources:
+    requests:
+      cpu:    50m
+      memory: 100Mi
+
+kube-state-metrics:
+  resources:
+    requests:
+      cpu:    50m
+      memory: 50Mi

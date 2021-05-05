@@ -1,0 +1,12 @@
+
+serviceMonitor:
+  enabled: true
+  namespace: monitoring
+
+  additionalLabels:
+    release:  prometheus-operator
+
+resources:
+  requests:
+    cpu:    50m
+    memory: 50Mi

@@ -1,0 +1,40 @@
+affinity: { }
+crds:
+  create: false
+customResourceManagerDisabled: false
+dnsConfig: { }
+env:
+  GOOGLE_APPLICATION_CREDENTIALS: /app/gcp-creds/gcp-creds.json
+  LOG_LEVEL: info
+  LOG_MESSAGE_KEY: msg
+  METRICS_PORT: 3001
+  POLLER_INTERVAL_MILLISECONDS: 60000
+filesFromSecret:
+  gcp-creds:
+    mountPath: /app/gcp-creds
+    secret: gcp-creds
+fullnameOverride: ""
+image:
+  imagePullSecrets: [ ]
+  pullPolicy: IfNotPresent
+  repository: godaddy/kubernetes-external-secrets
+  tag: 6.0.0
+nameOverride: ""
+nodeSelector: { }
+podAnnotations: { }
+podLabels: { }
+rbac:
+  create: true
+replicaCount: 1
+resources: { }
+securityContext:
+  runAsNonRoot: true
+serviceAccount:
+  annotations: { }
+  create: true
+  name: null
+serviceMonitor:
+  enabled: false
+  interval: 30s
+  namespace: null
+tolerations: [ ]

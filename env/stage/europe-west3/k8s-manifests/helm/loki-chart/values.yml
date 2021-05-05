@@ -1,0 +1,27 @@
+loki:
+  service:
+    type: LoadBalancer
+    annotations:
+      cloud.google.com/load-balancer-type: "Internal"
+  serviceAccount:
+    create: false
+    name: loki-stack
+  config:
+    storage_config:
+      boltdb_shipper:
+        active_index_directory: /data/loki/boltdb-shipper-active
+        cache_location: /data/loki/boltdb-shipper-cache
+        cache_ttl: 24h         # Can be increased for faster performance over longer query periods, uses more disk space
+        shared_store: gcs
+      gcs:
+          bucket_name: some-loki-logs
+
+    schema_config:
+      configs:
+        - from: 2021-02-22
+          store: boltdb-shipper
+          object_store: gcs
+          schema: v11
+          index:
+            prefix: index_
+            period: 24h
